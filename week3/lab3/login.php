@@ -13,7 +13,7 @@ and open the template in the editor.
         <?php
             // put your code here
             require_once './autoload.php';
-            
+            session_start();
 
             $util = new Util();
             $validate = new Validator();
@@ -24,6 +24,28 @@ and open the template in the editor.
             
             $email = $values['email'] ;
             $password = $values['password'];
+      
+             $errors = [];
+                if($util->isPostRequest()){
+                    if($userDAO->hasEmail($email))
+                    {
+                        $errors[] = "Email already exists.";
+                        
+                    }
+                    if(count($errors == 0))
+                    {
+                        $user_id = $userDAO->getID($email, $password);
+                        if($user_id == 0)
+                            $errors[] = "Login unsuccesful";
+                        else
+                        {
+                            $_SESSION['user_id'] = $email;
+                            $_SESSION['logged_in'] = true;
+                            echo $_SESSION['user_id'];
+                            header("Location: admin.php");
+                        }   
+                    }
+                }
         ?>
         <h3>Log In</h3>
         <form action="#" method="post" >
@@ -31,19 +53,7 @@ and open the template in the editor.
             <p>Password: <input name="password"  value="<?php echo $password ?>" type="password"/></p>
             <button type="submit" value="submit"> Log In</button>
         </form>
-        <?php
-                if($util->isPostRequest()){
-                    if($userDAO->hasEmail($email))
-                    {
-                        echo $userDAO->validPassword($email);
-                    }
-                    else
-                    {
-                        
-                    }
-                }
-        ?>
         <br>
-        <a href="index.php">Sign-up</a>
+        <a href="index.php">Sign-up</a> 
     </body>
 </html>

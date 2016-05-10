@@ -1,5 +1,6 @@
 <?php
-    
+ session_start();
+ $_SESSION['loggedin'] = true;
 if ( isset($_SESSION['loggedin']) &&
         $_SESSION['loggedin'] === true ) {
    echo '<a href="?logout=1">Logout</a>';

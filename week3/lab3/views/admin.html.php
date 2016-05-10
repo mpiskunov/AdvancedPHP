@@ -12,6 +12,15 @@ and open the template in the editor.
     <body>
         <?php
         // put your code here
+        session_start();
+        if($_SESSION['user_id'] == 0)
+        {
+            echo "no no no";
+        }
+        else
+        {
+            echo "yes yes yes";
+        }
         ?>
     </body>
 </html>

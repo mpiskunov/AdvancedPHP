@@ -62,18 +62,22 @@ class UserDAO extends DB implements IDAO {
         return false;
     }
     
-    function validPassword($email){
+    function getID($email, $password){
         $results = array();
         $db = $this->getDb();
-         $stmt = $db->prepare("SELECT password FROM users where email = :email");
+         $stmt = $db->prepare("SELECT password, user_id FROM users where email = :email");
          $binds = array(
              ":email" => $email
          );
         if ($stmt->execute($binds) && $stmt->rowCount() > 0) {
-            $results = $stmt->fetchAll();
-            return $results;
+             $results = $stmt->fetch(PDO::FETCH_ASSOC);
+             
+             if( password_verify( $password,$results['password']) )
+             {
+                 return $results['user_id'];
+             }
         }
-        
+        return 0;
     }
     
     function read($id){
