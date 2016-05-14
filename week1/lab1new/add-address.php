@@ -119,7 +119,6 @@
                 $email = '';
                 $addressline1 = '';
                 $city = '';
-                $state = '';
                 $zip = '';
                 $birthday = '';
             }
