@@ -30,18 +30,21 @@ and open the template in the editor.
                     if($userDAO->hasEmail($email))
                     {
                         $errors[] = "Email already exists.";
-                        
+                        $password = "";
                     }
+                    
                     if(count($errors == 0))
                     {
                         $user_id = $userDAO->getID($email, $password);
                         if($user_id == 0)
+                        {
                             $errors[] = "Login unsuccesful";
+                            $password = "";
+                        }
+                            
                         else
                         {
-                            $_SESSION['user_id'] = $email;
                             $_SESSION['logged_in'] = true;
-                            echo $_SESSION['user_id'];
                             header("Location: admin.php");
                         }   
                     }

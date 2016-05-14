@@ -28,30 +28,34 @@ and open the template in the editor.
             
             $email = $values['email'] ;
             $password = $values['password'];
+
+            if($util->isPostRequest()){
+                if(!$validate->emailIsValid($values['email']))
+                {
+                    echo "Email is not valid <br>";
+                }
+                if(!$validate->passwordisValid($values["password"]))
+                {
+                    
+                    echo "Password is not valid<br>";
+                }
+                else if( $userDAO->hasEmail($values['email']))
+                {
+                        echo "Email taken<br>";
+                }
+                else
+                {
+                    $userDAO->create($values);
+                    echo "Created.<br>";
+                }
+            }
         ?>
-        <h3>Sign Up</h3>
+           <h3>Sign Up</h3>
           <form action="#" method="post" > 
               <p>UserName: <input name="email" value="<?php echo $email ?>"/></p>
               <p>Password: <input name="password"  value="<?php echo $password ?>" type="password"/></p>
               <button type="submit" value="submit"> Sign Up</button>
           </form>
-        <?php 
-            if($util->isPostRequest()){
-                if(!$validate->emailIsValid($values['email']))
-                {
-                    echo "Email is not valid";
-                }
-                else if( $userDAO->hasEmail($values['email']))
-                {
-                        echo "Email taken";
-                }
-                else
-                {
-                    $userDAO->create($values);
-                    echo "Created.";
-                }
-            }
-        ?>
         <br>
         <a href="login.php">Log in here</a>
     </body>

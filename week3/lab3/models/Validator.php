@@ -17,4 +17,7 @@ class Validator {
         return ( is_string($email) && !empty($email) && filter_var($email, FILTER_VALIDATE_EMAIL) !== false );
     }
 
+    public function passwordisValid($password){
+        return (isset($password) && $password != '');
+    }
 }
