@@ -22,6 +22,7 @@ and open the template in the editor.
             Upload file: <input name="upfile" type="file" />
             <input type="submit" value="Send File" />
         </form>
+        <a href="upload/DirectoryIterator.php">View Images</a>
         <?php
         // put your code here
         ?>
