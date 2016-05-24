@@ -97,6 +97,8 @@
         <?php else: ?>
             <p><?php echo $error; ?></p>
         <?php endif; ?>
-            <a href="DirectoryIterator.php">Click her to View all files</a>
+            <a href="DirectoryIterator.php">Click to View all files</a>
+            <br>
+            <a href="../index.php">Click to Upload</a>
     </body>
 </html>

@@ -19,11 +19,25 @@ and open the template in the editor.
             die('Folder <strong>' . $folder . '</strong> does not exist' );
         }
         $directory = new DirectoryIterator($folder);
-         $values = filter_input_array(INPUT_POST);
-         echo $values['name'];
+        $value = $_POST['img'];
+        echo $value;
+        if(isset($_POST['delete'] ) )
+        {
+            echo "hello";
+        }
+        
         ?>
-     
-            <li>Image</li>
+    <li><img src="uploads/<?php echo $value ?>"></li>
+    <br>
+    <ul>
+            <li>
+                <form action="" method="post">
+                    <input type="submit" name="delete"/>
+                </form>
+            </li>
+            <li><a href="./DirectoryIterator.php">View All Files</a></li>
+            <li></li>
+    </ul>
 
     </body>
 </html>
