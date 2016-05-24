@@ -34,18 +34,32 @@
         ?>
         <ol >
             <?php foreach ($directory as $fileInfo) : ?>
-            <li>Uploaded: <?php echo date("l F j, Y, g:i a", $fileInfo->getMTime()); ?> | 
-                File Size: <?php echo $fileInfo->getSize(); ?>  byte's | 
-                File Name: <?php echo $fileInfo->getFileInfo() ?>
-                <form method="post">
+            <li>
+                <table class="table">
+                    <tr>
+                        <td>Uploaded: <?php echo date("l F j, Y, g:i a", $fileInfo->getMTime()); ?></td>
+                        <td>File Size: <?php echo $fileInfo->getSize(); ?>  byte's</td>
+                        <td>File Name: <?php echo $fileInfo->getFileInfo() ?></td>
+                        <td><form method="post" action="fileread.php">
+                    <input type="hidden" name="fileDetails" value="<?php echo $fileInfo ?>">
+                    <input type="hidden" name="fileType" value="<?php echo $fileInfo->getExtension() ?>">
+                    <input type="hidden" name="filePath" value="<?php echo $fileInfo->getBasename() ?>">
+                    <input type="hidden" name="fileTime" value="<?php echo date("l F j, Y, g:i a", $fileInfo->getMTime()); ?>">
+                    <input type="hidden" name="fileSize" value="<?php echo $fileInfo->getSize(); ?>">
+                    <input type="submit" value="View">
+                </form></td>
+                        <td><form method="post">
                     <input type="hidden" name="delete" value="<?php echo $fileInfo ?>">
                     <input type="submit" value="delete">
-                </form>
-                
+                </form></td>
+                    </tr>
+                    
+                </table>
+  
                 </li>
                 
             <?php endforeach; ?>
         </ol>
-        <a href="./upload.php" >Upload Files</a>
+        <a href="../index.php" >Upload Files</a>
     </body>
 </html>

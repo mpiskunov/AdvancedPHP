@@ -19,7 +19,7 @@ and open the template in the editor.
             <!-- MAX_FILE_SIZE must precede the file input field -->
             <!-- <input type="hidden" name="MAX_FILE_SIZE" value="30000" /> -->
             <!-- Name of input element determines name in $_FILES array -->
-            Upload file: <input name="upfile" type="file" />
+            <h3> Upload file</h3><input name="upfile" type="file" />
             <input type="submit" value="Send File" />
         </form>
         <a href="upload/DirectoryIterator.php">View Files</a>
