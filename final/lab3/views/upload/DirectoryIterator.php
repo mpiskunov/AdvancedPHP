@@ -41,6 +41,7 @@
                     <input type="hidden" name="delete" value="<?php echo $fileInfo ?>">
                     <input type="submit" value="delete">
                 </form>
+                
                 </li>
                 
             <?php endforeach; ?>

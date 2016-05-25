@@ -9,7 +9,7 @@ class AddressResoruce extends DB implements IRestModel {
     }
 
     public function getAll() {
-        $stmt = $this->getDb()->prepare("SELECT * FROM address");
+        $stmt = $this->getDb()->prepare("SELECT * FROM corps");
         $results = array();      
         if ($stmt->execute() && $stmt->rowCount() > 0) {
             $results = $stmt->fetchAll(PDO::FETCH_ASSOC);

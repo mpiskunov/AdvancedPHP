@@ -14,6 +14,8 @@ and open the template in the editor.
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
     </head>
     <body class="container">
+        <?php session_start();
+        ?>
         <!-- The data encoding type, enctype, MUST be specified as below -->
         <form enctype="multipart/form-data" action="upload/upload.php" method="POST">
             <!-- MAX_FILE_SIZE must precede the file input field -->

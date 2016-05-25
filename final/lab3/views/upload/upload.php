@@ -10,6 +10,7 @@
         /*
          * make sure php_fileinfo.dll extension is enable in php.ini
          */
+         
 
         class Filehandler {
 
@@ -44,16 +45,8 @@
                 // Check MIME Type by yourself.
                 $finfo = new finfo(FILEINFO_MIME_TYPE);
                 $validExts = array(
-                    'txt' => 'text/plain',
-                    'html' => 'text/html',
-                    'pdf' => 'application/pdf',
-                    'doc' => 'application/msword',
-                    'docx' => 'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
-                    'xls' => 'application/vnd.ms-excel',
-                    'xlsx' => 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
                     'jpg' => 'image/jpeg',
-                    'png' => 'image/png',
-                    'gif' => 'image/gif'
+                    'png' => 'image/png'
                 );
                 $ext = array_search($finfo->file($_FILES[$keyName]['tmp_name']), $validExts, true);
 
@@ -87,6 +80,7 @@
 
         try {
             $fileName = $filehandler->upLoad('upfile');
+            
         } catch (RuntimeException $e) {
             $error = $e->getMessage();
         }
@@ -94,11 +88,13 @@
 
         <?php if ( isset($fileName) ) : ?>
             <h2><?php echo $fileName; ?> is uploaded successfully.</h2>
-        <?php else: ?>
+        <?php 
+        
+        else: ?>
             <p><?php echo $error; ?></p>
         <?php endif; ?>
             <a href="DirectoryIterator.php">Click to View all files</a>
             <br>
-            <a href="../index.php">Click to Upload</a>
+            <a href="../upload-form.php">Click to Upload</a>
     </body>
 </html>
